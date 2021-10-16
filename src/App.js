@@ -1,40 +1,45 @@
-import { BrowserRouter as Router,Switch,Route, Link } from "react-router-dom";
-import About from "./components/About/About";
-import Found from "./components/Found/Found";
-import FriendDetail from "./components/FriendDetail/FriendDetail";
-import Friends from "./components/Friends/Friends";
-import Header from "./components/Header/Header";
-import Home from "./components/Home/Home";
+import './App.css'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 
+import Home from './Pages/Home/Home/Home';
+import Found from './Pages/NotFound/Found';
+import Booking from './Pages/Booking/Booking/Booking';
+import Login from './Pages/Login/Login/Login';
+import Header from './Pages/Shared/Header';
+import AuthProvider from './contexts/AuthProvider';
+import PrivateRoute from './Pages/Login/Login/PrivateRoute/PrivateRoute';
 
 function App() {
   return (
     <div className="App">
+      <AuthProvider>
       <Router>
-      <Header></Header>
+        <Header></Header>
         <Switch>
-          <Route path="/home">
-          <Home></Home>
-          </Route>
           <Route exact path="/">
-          <Home></Home>
+            <Home></Home>
           </Route>
-          <Route path="/friend/:friendId">
-            <FriendDetail></FriendDetail>
-
+          <Route path="/home">
+            <Home></Home>
           </Route>
-          <Route path="/friends">
-            <Friends></Friends>
+          <Route path="/login">
+            <Login></Login>
           </Route>
-          <Route path="/about">
-            <About></About>
-          </Route>
+          <PrivateRoute path="/booking/:serviceId">
+            <Booking></Booking>
+            
+          </PrivateRoute>
           <Route path="*">
             <Found></Found>
           </Route>
-
         </Switch>
       </Router>
+      </AuthProvider>
     </div>
   );
 }
