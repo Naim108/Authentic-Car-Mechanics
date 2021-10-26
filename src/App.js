@@ -13,6 +13,8 @@ import Login from './Pages/Login/Login/Login';
 import Header from './Pages/Shared/Header';
 import AuthProvider from './contexts/AuthProvider';
 import PrivateRoute from './Pages/Login/Login/PrivateRoute/PrivateRoute';
+import AddService from './Pages/AddService/AddService';
+import ManageServices from './Pages/ManageServices/ManageServices';
 
 function App() {
   return (
@@ -30,6 +32,12 @@ function App() {
           <Route path="/login">
             <Login></Login>
           </Route>
+          <Route path="/addService">
+            <AddService></AddService>
+            </Route>
+          <Route path="/manageServices">
+            <ManageServices></ManageServices>
+            </Route>
           <PrivateRoute path="/booking/:serviceId">
             <Booking></Booking>
             
